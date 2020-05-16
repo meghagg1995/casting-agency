@@ -6,10 +6,10 @@
 4. Authorization & Role based Authentification with `Auth0` (see `auth.py`)
 5. Deployment on `Heroku`
 
-#
+
 ## Local Setup
 
-#
+
 ## Authentication
 
 All API Endpoints are decorated with Auth0 permissions.
@@ -38,7 +38,7 @@ They are 3 Roles with the following permissions:
 In your API Calls, JWT token for a particular user who is assigned a particular role is passed, with `Authorization` as key and the `Bearer token` as value. Don´t forget to also
 prepend `Bearer` to the token (seperated by space).
 
-#
+
 ## API Documentation
 
 ### Base URL
