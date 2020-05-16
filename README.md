@@ -6,9 +6,53 @@
 4. Authorization & Role based Authentification with `Auth0` (see `auth.py`)
 5. Deployment on `Heroku`
 
-
+#
 ## Local Setup
 
+Make sure you `cd` into the correct folder before following the setup steps.
+Also, you need the latest version of [Python 3](https://www.python.org/downloads/)
+and [postgres](https://www.postgresql.org/download/) installed on your machine.
+
+To start and run the local development server,
+
+1. Initialize and activate a virtualenv:
+  ```bash
+  $ pip install virtualenv
+  $ virtualenv venv
+  $ source venv/scripts/activate
+  ```
+
+2. Install the dependencies:
+```bash
+$ pip install -r requirements.txt
+```
+
+3. Create databases
+```bash
+$ createdb casting-agency
+$ createdb casting-agency-test
+```
+
+4. Run the development server:
+  ```bash 
+  $ python app.py
+  ```
+
+5. To execute tests, run
+```bash 
+$ python test.py
+```
+If you choose to run all tests, it should give this response:
+
+```bash
+$ python test_app.py
+........................
+----------------------------------------------------------------------
+Ran 24 tests in 44.718s
+
+OK
+```
+**Note:** If testing the API locally make some **POST** requests for actors and movies before **GET**, **PATCH**, **DELETE** requests because the database is **initially empty**.
 
 ## Authentication
 
