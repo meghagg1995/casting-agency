@@ -90,6 +90,7 @@ prepend `Bearer` to the token (seperated by space).
 **https://casting-agency-project.herokuapp.com**
 
 **Note: JWT's for user for all the 3 roles are included as environment variables in the .env file.**
+For testing the API Endpoints use these JWT's in the Authorization headers.
 
 #
 ### 1. GET /actors
