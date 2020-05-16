@@ -629,7 +629,7 @@ Additionally, trying to update an movie without giving Authorization header, wil
 ```
 
 #
-### 4. DELETE /movies/\<movie_id>
+### 10. DELETE /movies/\<movie_id>
 
 Delete an existing movie from the database
 #### Example Request
@@ -657,6 +657,70 @@ If you try to delete movie with a non existing id, it will throw an `404` error:
 
 ```
 curl -X DELETE -H "Authorization: Bearer <JWT>" https://casting-agency-project.herokuapp.com/movies/100
+```
+
+will return
+
+```js
+{
+    "error": 404,
+    "message": "Resource Not Found",
+    "success": false
+}
+```
+#
+### 11. POST /cast
+
+Insert a many to many relationship between actors and movies, ie. insert actor and movie id's in association table.
+#### Example request
+```
+curl -X POST -H "Authorization: Bearer <JWT>" -H "Content-Type: application/json" -d '{"actor_id": 1, "movie_id": 1}' https://casting-agency-project.herokuapp.com/cast
+```
+
+- Request Arguments: **None**
+- Request Headers: 
+   - **Content-Type** (_application/json_)
+   - **Authorization**
+- Request Body:
+  1. **integer** `actor_id` (<span style="color:red">*</span>required)
+  2. **integer** `movie_id` (<span style="color:red">*</span>required)
+- Requires permission: `add:movies`
+- Returns: 
+  1. Dict with following fields:
+      - **string** `actor.name`
+      - **string** `movie.title`
+  2. **boolean** `success`
+
+#### Example response
+```js
+{
+    "actor": "Tom Cruise",
+    "movie": "Mission Impossible",
+    "success": true
+}
+```
+#### Errors
+If you try to create a new entry without a required field like `actor_id`, `movie_id`
+it will throw a `400` error:
+
+```
+curl -X POST -H "Authorization: Bearer <JWT>" -H "Content-Type: application/json" -d '{"actor_id": 1}' https://casting-agency-project.herokuapp.com/cast
+```
+
+will return
+
+```js
+{
+    "error": 400,
+    "message": "Bad Request",
+    "success": false
+}
+```
+
+If you try to create a new entry with a id of movie or actor that doesn't exsist in the database it will throw a `404` error:
+
+```
+curl -X POST -H "Authorization: Bearer <JWT>" -H "Content-Type: application/json" -d '{"actor_id": 100, "movie_id": 5}' https://casting-agency-project.herokuapp.com/cast
 ```
 
 will return
